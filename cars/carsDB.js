@@ -5,7 +5,8 @@ module.exports = {
     getById,
     insertCar,
     update,
-    remove
+    remove,
+    insertSale
 }
 
 function get() {
@@ -21,6 +22,10 @@ async function insertCar(car) {
     if (res.rowCount >= 1) { return car }
 }
 
+function insertSale(sale) {
+    return db('sales').insert(sale)
+}
+
 function update(id, car) {
     return db('cars').where({id}).update(car)
 }
@@ -30,3 +35,5 @@ async function remove(id) {
     db('cars').where({id}).del().then(res => console.log(res))
     return car
 }
+
+
